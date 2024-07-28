@@ -1,16 +1,15 @@
 name: faith_fund
 description: "A new Flutter project."
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.6
   firebase_core: ^3.2.0
@@ -26,6 +25,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   form_field_validator: ^1.1.0
   keyboard_dismisser: ^3.0.0
+  rmdev_widgets:
+    git:
+      ref: main
 
 dev_dependencies:
   flutter_test:
@@ -34,11 +36,11 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
     - assets/logos/
+    - assets/images/
 
   # example:
   # fonts:
