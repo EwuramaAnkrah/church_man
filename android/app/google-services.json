@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "583670654069",
+    "project_id": "faithfund-c38b9",
+    "storage_bucket": "faithfund-c38b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583670654069:android:41e4bbdf94ed5d543b443c",
+        "android_client_info": {
+          "package_name": "dev.richardoppong.faith_fund"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOjxVs-055MCLrs9Dyc0oh27jBoQFk6ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
