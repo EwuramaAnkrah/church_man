@@ -9,15 +9,9 @@ class OnboardingPage extends GetView<OnboardingController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OnboardingController>(
-      builder: (_) {
-        return Scaffold(
-          appBar: AppBar(title: const Text("onboarding")),
-          body: const SafeArea(
-            child: OnBoardingBody(),
-          ),
-        );
-      },
+    return const Scaffold(
+      backgroundColor: Color(0xfff8f4ee),
+      body: OnBoardingBody(),
     );
   }
 }
