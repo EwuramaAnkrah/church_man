@@ -12,7 +12,12 @@
           "package_name": "dev.richardoppong.faith_fund"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "583670654069-vkh3b9qpgqoe51ro73oms6j8b3l6k1ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBOjxVs-055MCLrs9Dyc0oh27jBoQFk6ug"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583670654069-vkh3b9qpgqoe51ro73oms6j8b3l6k1ep.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "583670654069-jdlh1bk97j46m5h6vaj0aat1g4roqv66.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.richardoppong.faithFund"
+              }
+            }
+          ]
         }
       }
     }

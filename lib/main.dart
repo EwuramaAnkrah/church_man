@@ -1,3 +1,4 @@
+import 'package:faith_fund/app/core/theme/app_theme.dart';
 import 'package:faith_fund/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,10 +27,7 @@ class FaithFund extends StatelessWidget {
         builder: (context, _) => GetMaterialApp(
           title: 'Faith Fund',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: AppTheme.bDefaultTheme,
           initialRoute: AppPages.initialPage,
           getPages: AppPages.routes,
           defaultTransition: Transition.fade,

@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '583670654069',
     projectId: 'faithfund-c38b9',
     storageBucket: 'faithfund-c38b9.appspot.com',
+    iosClientId: '583670654069-jdlh1bk97j46m5h6vaj0aat1g4roqv66.apps.googleusercontent.com',
     iosBundleId: 'dev.richardoppong.faithFund',
   );
 }
