@@ -1,3 +1,5 @@
+import 'package:faith_fund/app/modules/auth/sign_up/widgets/sign_up_body.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'index.dart';
@@ -7,35 +9,36 @@ class SignUpController extends GetxController {
 
   final state = SignUpState();
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar(
-      "标题",
-      "消息",
-    );
+  void updateSignUpStep(SignUpStep currentStep) {
+    state.currentStep = currentStep;
   }
 
-  /// 在 widget 内存中分配后立即调用。
-  @override
-  void onInit() {
-    super.onInit();
+  void onBackTapped() {
+    switch (state.currentStep) {
+      case SignUpStep.emailStep:
+        Get.back();
+        break;
+      case SignUpStep.nameStep:
+        state.currentStep = SignUpStep.emailStep;
+        break;
+      case SignUpStep.passwordStep:
+        state.currentStep = SignUpStep.nameStep;
+        break;
+      case SignUpStep.completedStep:
+        state.currentStep = SignUpStep.passwordStep;
+        break;
+    }
   }
+}
 
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
+enum SignUpStep {
+  emailStep(value: 1 / 4, widget: SignUpBody()),
+  nameStep(value: 2 / 4, widget: RegistrationFullName()),
+  passwordStep(value: 3 / 4, widget: RegistrationPassword()),
+  completedStep(value: 4 / 4, widget: RegistrationComplete());
 
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  const SignUpStep({required this.value, required this.widget});
 
-  /// dispose 释放内存
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  final double value;
+  final Widget widget;
 }

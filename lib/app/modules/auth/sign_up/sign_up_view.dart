@@ -4,33 +4,39 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import 'index.dart';
-import 'widgets/widgets.dart';
 
 class SignUpPage extends GetView<SignUpController> {
   const SignUpPage({super.key});
 
-  Widget _buildView() {
-    return const SignUpBody();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          SizedBox(
-            height: 20.h,
-            width: 20.h,
-            child: const CircularProgressIndicator(
-              backgroundColor: Color(0xffe1e1e6),
-              value: 0,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              size: 25.sp,
             ),
+            onPressed: () => controller.onBackTapped(),
           ),
-          Gap(10.w),
-        ],
-      ),
-      body: SafeArea(
-        child: _buildView(),
+          actions: [
+            Obx(
+              () => SizedBox(
+                height: 20.h,
+                width: 20.h,
+                child: CircularProgressIndicator(
+                  backgroundColor: const Color(0xffe1e1e6),
+                  value: controller.state.currentStep.value,
+                ),
+              ),
+            ),
+            Gap(10.w),
+          ],
+        ),
+        body: Obx(() => controller.state.currentStep.widget),
       ),
     );
   }

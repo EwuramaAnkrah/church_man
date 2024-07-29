@@ -106,14 +106,15 @@ class SignInBody extends GetView<SignInController> {
                     alignment: Alignment.centerLeft,
                     child: Image.asset(
                       "assets/logos/google-logo.png",
-                      height: 35.h,
+                      height: 25.h,
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
                       "Continue with Google",
-                      style: context.textTheme.bodyMedium,
+                      style: context.textTheme.bodyMedium
+                          ?.copyWith(fontSize: 16.sp),
                     ),
                   )
                 ],
