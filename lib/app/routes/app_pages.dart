@@ -1,5 +1,6 @@
 import 'package:faith_fund/app/modules/auth/sign_in/index.dart';
 import 'package:faith_fund/app/modules/auth/sign_up/index.dart';
+import 'package:faith_fund/app/modules/home/index.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/onBoarding/index.dart';
@@ -26,6 +27,11 @@ class AppPages {
       name: _Paths.signUp,
       page: () => const SignUpPage(),
       binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: _Paths.home,
+      page: () => const HomePage(),
+      binding: HomeBinding(),
     ),
   ];
 }
