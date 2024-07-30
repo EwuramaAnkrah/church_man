@@ -23,7 +23,7 @@ class AppTheme {
       );
 
   static TextStyle get _bodySmallStyle {
-    return GoogleFonts.openSans(
+    return GoogleFonts.montserrat(
       fontSize: 12.sp,
       color: const Color(0xff030612),
       fontWeight: FontWeight.w400,
@@ -31,7 +31,7 @@ class AppTheme {
   }
 
   static TextStyle get _bodyMediumStyle {
-    return GoogleFonts.openSans(
+    return GoogleFonts.montserrat(
       fontSize: 19.sp,
       color: const Color(0xff030612),
       fontWeight: FontWeight.w500,
@@ -39,7 +39,7 @@ class AppTheme {
   }
 
   static TextStyle get _bodyLargeTextStyle {
-    return GoogleFonts.openSans(
+    return GoogleFonts.montserrat(
       fontSize: 27.sp,
       color: const Color(0xff030612),
       fontWeight: FontWeight.w700,
