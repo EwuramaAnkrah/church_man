@@ -4,6 +4,7 @@ import 'package:faith_fund/app/modules/home/index.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/onBoarding/index.dart';
+import 'auth_middleware.dart';
 
 part 'app_routes.dart';
 
@@ -17,6 +18,7 @@ class AppPages {
       name: _Paths.onBoarding,
       page: () => const OnboardingPage(),
       binding: OnboardingBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.signIn,
