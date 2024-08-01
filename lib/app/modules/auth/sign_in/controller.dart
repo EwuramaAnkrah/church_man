@@ -1,41 +1,37 @@
+import 'package:faith_fund/app/routes/app_pages.dart';
+import 'package:faith_fund/app/services/firebase_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rmdev_widgets/network/log_all_the_time_filter.dart';
 
 import 'index.dart';
 
 class SignInController extends GetxController {
-  SignInController();
+  var log = rmGetLogger("Sign in controller");
+  GlobalKey<FormState> signInKey = GlobalKey<FormState>();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   final state = SignInState();
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar(
-      "标题",
-      "消息",
-    );
-  }
+  void signInFaithUser() async {
+    try {
+      state.isLoading = true;
 
-  /// 在 widget 内存中分配后立即调用。
-  @override
-  void onInit() {
-    super.onInit();
-  }
+      if (signInKey.currentState?.validate() ?? false) {
+        FirebaseServiceResponse response = await FirebaseService().signInUserWithEmailAndPassword(
+            emailController.text.trim(), passwordController.text.trim());
 
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  /// dispose 释放内存
-  @override
-  void dispose() {
-    super.dispose();
+        if (response.hasError ?? true) {
+          log.i(response.errorMessage);
+          return;
+        }
+        Get.offAllNamed(Routes.home);
+      }
+    } finally {
+      state.isLoading = false;
+    }
   }
 }

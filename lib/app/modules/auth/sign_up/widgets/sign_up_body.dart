@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:rmdev_widgets/buttons/rm_button.dart';
+import 'package:rmdev_widgets/form_validator.dart';
 import 'package:rmdev_widgets/text_fields/rm_textfield.dart';
 
 import '../index.dart';
@@ -35,21 +36,27 @@ class SignUpBody extends GetView<SignUpController> {
                   Text(
                     "We will send you a verification link",
                     style:
-                        context.textTheme.bodySmall?.copyWith(fontSize: 15.sp),
+                    context.textTheme.bodySmall?.copyWith(fontSize: 15.sp),
                   )
                 ],
               ),
             ),
             Gap(20.h),
-            const RmTextFormField(
-              hintText: "Enter email address",
-              fieldBorderRadius: 15,
-              hintTextColor: Color.fromARGB(255, 158, 158, 161),
-              textInputType: TextInputType.emailAddress,
-              contentPaddingBottom: 15,
-              contentPaddingLeft: 15,
-              contentPaddingRight: 15,
-              contentPaddingTop: 15,
+            Form(
+              key: controller.emailFormKey,
+              child: RmTextFormField(
+                hintText: "Enter email address",
+                controller: controller.emailController,
+                fieldBorderRadius: 15,
+                hintTextColor: const Color.fromARGB(255, 158, 158, 161),
+                textInputType: TextInputType.emailAddress,
+                contentPaddingBottom: 15,
+                contentPaddingLeft: 15,
+                contentPaddingRight: 15,
+                contentPaddingTop: 15,
+                validator: (value) =>
+                    RmFormValidator.emailValidator.call(value),
+              ),
             ),
             Gap(20.h),
             RichText(
@@ -81,7 +88,7 @@ class SignUpBody extends GetView<SignUpController> {
             ),
             Gap(20.h),
             RmButton(
-              onTap: () => controller.updateSignUpStep(SignUpStep.nameStep),
+              onTap: () => controller.updateSignUpStep(),
               label: "Continue",
               color: const Color(0xff4091a5),
             ),
@@ -196,32 +203,46 @@ class RegistrationFullName extends GetView<SignUpController> {
                 ),
               ),
               Gap(40.h),
-              const RmTextFormField(
-                hintText: "Enter first name",
-                fieldBorderRadius: 15,
-                hintTextColor: Color.fromARGB(255, 158, 158, 161),
-                textInputType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                contentPaddingBottom: 15,
-                contentPaddingLeft: 15,
-                contentPaddingRight: 15,
-                contentPaddingTop: 15,
-              ),
-              Gap(16.h),
-              const RmTextFormField(
-                hintText: "Enter last name",
-                fieldBorderRadius: 15,
-                hintTextColor: Color.fromARGB(255, 158, 158, 161),
-                textInputType: TextInputType.emailAddress,
-                contentPaddingBottom: 15,
-                contentPaddingLeft: 15,
-                contentPaddingRight: 15,
-                contentPaddingTop: 15,
+              Form(
+                key: controller.nameFormKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RmTextFormField(
+                      hintText: "Enter first name",
+                      controller: controller.firstNameController,
+                      fieldBorderRadius: 15,
+                      hintTextColor: const Color.fromARGB(255, 158, 158, 161),
+                      textInputType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
+                      contentPaddingBottom: 15,
+                      contentPaddingLeft: 15,
+                      contentPaddingRight: 15,
+                      contentPaddingTop: 15,
+                      validator: (value) =>
+                          RmFormValidator.requiredValidator.call(value),
+                    ),
+                    Gap(16.h),
+                    RmTextFormField(
+                      hintText: "Enter last name",
+                      controller: controller.lastNameController,
+                      fieldBorderRadius: 15,
+                      hintTextColor: const Color.fromARGB(255, 158, 158, 161),
+                      textInputType: TextInputType.emailAddress,
+                      contentPaddingBottom: 15,
+                      contentPaddingLeft: 15,
+                      contentPaddingRight: 15,
+                      contentPaddingTop: 15,
+                      validator: (value) =>
+                          RmFormValidator.requiredValidator.call(value),
+                    ),
+                  ],
+                ),
               ),
               Gap(20.h),
               RmButton(
-                onTap: () =>
-                    controller.updateSignUpStep(SignUpStep.passwordStep),
+                onTap: () => controller.updateSignUpStep(),
                 label: "Continue",
                 color: const Color(0xff4091a5),
               ),
@@ -257,32 +278,47 @@ class RegistrationPassword extends GetView<SignUpController> {
               textAlign: TextAlign.center,
             ),
             Gap(50.h),
-            const RmTextFormField(
-              hintText: "Enter password",
-              fieldBorderRadius: 15,
-              obscureText: true,
-              hintTextColor: Color.fromARGB(255, 158, 158, 161),
-              textInputAction: TextInputAction.next,
-              contentPaddingBottom: 15,
-              contentPaddingLeft: 15,
-              contentPaddingRight: 15,
-              contentPaddingTop: 15,
-            ),
-            Gap(16.h),
-            const RmTextFormField(
-              hintText: "Confirm password",
-              fieldBorderRadius: 15,
-              obscureText: true,
-              hintTextColor: Color.fromARGB(255, 158, 158, 161),
-              contentPaddingBottom: 15,
-              contentPaddingLeft: 15,
-              contentPaddingRight: 15,
-              contentPaddingTop: 15,
+            Form(
+              key: controller.passwordFormKey,
+              child: Column(
+                children: [
+                  RmTextFormField(
+                    hintText: "Enter password",
+                    controller: controller.passwordController,
+                    fieldBorderRadius: 15,
+                    obscureText: true,
+                    hintTextColor: const Color.fromARGB(255, 158, 158, 161),
+                    textInputAction: TextInputAction.next,
+                    contentPaddingBottom: 15,
+                    contentPaddingLeft: 15,
+                    contentPaddingRight: 15,
+                    contentPaddingTop: 15,
+                    validator: (value) =>
+                        RmFormValidator.strongPasswordValidator.call(value),
+                  ),
+                  Gap(16.h),
+                  RmTextFormField(
+                    hintText: "Confirm password",
+                    controller: controller.confirmPassController,
+                    fieldBorderRadius: 15,
+                    obscureText: true,
+                    hintTextColor: const Color.fromARGB(255, 158, 158, 161),
+                    contentPaddingBottom: 15,
+                    contentPaddingLeft: 15,
+                    contentPaddingRight: 15,
+                    contentPaddingTop: 15,
+                    validator: (value) =>
+                        RmFormValidator.validatePasswordMatch(
+                            controller.passwordController.text,
+                            controller.confirmPassController.text)
+                            .call(value),
+                  ),
+                ],
+              ),
             ),
             Gap(20.h),
             RmButton(
-              onTap: () =>
-                  controller.updateSignUpStep(SignUpStep.completedStep),
+              onTap: () => controller.updateSignUpStep(),
               label: "Continue",
               color: const Color(0xff4091a5),
             ),
@@ -311,7 +347,7 @@ class RegistrationComplete extends GetView<SignUpController> {
               children: [
                 Text(
                   "🎉 Welcome to Faith Fund 🎉",
-                  style: context.textTheme.bodyLarge?.copyWith(fontSize: 26.sp),
+                  style: context.textTheme.bodyLarge?.copyWith(fontSize: 22.sp),
                 ),
                 Gap(15.h),
                 Text(
@@ -330,11 +366,14 @@ class RegistrationComplete extends GetView<SignUpController> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: RmButton(
-              onTap: () => Get.offNamed(Routes.home),
-              label: "Continue",
-              color: const Color(0xff4091a5),
-            ),
+            child: Obx(() {
+              return RmButton(
+                isLoading: controller.state.isLoading,
+                onTap: () => controller.goToHomePageWithValidUpdatedUser(),
+                label: "Continue",
+                color: const Color(0xff4091a5),
+              );
+            }),
           )
         ],
       ),
