@@ -1,5 +1,4 @@
 import 'package:faith_fund/app/modules/auth/sign_up/controller.dart';
-import 'package:faith_fund/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -36,7 +35,7 @@ class SignUpBody extends GetView<SignUpController> {
                   Text(
                     "We will send you a verification link",
                     style:
-                    context.textTheme.bodySmall?.copyWith(fontSize: 15.sp),
+                        context.textTheme.bodySmall?.copyWith(fontSize: 15.sp),
                   )
                 ],
               ),
@@ -284,6 +283,7 @@ class RegistrationPassword extends GetView<SignUpController> {
                 children: [
                   RmTextFormField(
                     hintText: "Enter password",
+                    maxLines: 1,
                     controller: controller.passwordController,
                     fieldBorderRadius: 15,
                     obscureText: true,
@@ -299,6 +299,7 @@ class RegistrationPassword extends GetView<SignUpController> {
                   Gap(16.h),
                   RmTextFormField(
                     hintText: "Confirm password",
+                    maxLines: 1,
                     controller: controller.confirmPassController,
                     fieldBorderRadius: 15,
                     obscureText: true,
@@ -307,11 +308,10 @@ class RegistrationPassword extends GetView<SignUpController> {
                     contentPaddingLeft: 15,
                     contentPaddingRight: 15,
                     contentPaddingTop: 15,
-                    validator: (value) =>
-                        RmFormValidator.validatePasswordMatch(
+                    validator: (value) => RmFormValidator.validatePasswordMatch(
                             controller.passwordController.text,
                             controller.confirmPassController.text)
-                            .call(value),
+                        .call(value),
                   ),
                 ],
               ),

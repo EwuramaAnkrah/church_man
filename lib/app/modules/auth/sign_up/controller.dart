@@ -1,6 +1,6 @@
 import 'package:faith_fund/app/modules/auth/sign_up/widgets/sign_up_body.dart';
 import 'package:faith_fund/app/routes/app_pages.dart';
-import 'package:faith_fund/app/services/firebase_service.dart';
+import 'package:faith_fund/app/services/firebase/firebase_auth_service.dart';
 import 'package:faith_fund/app/services/storage_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -23,7 +23,7 @@ class SignUpController extends GetxController {
 
   final state = SignUpState();
 
-  final _firebaseService = FirebaseService();
+  final _firebaseService = FirebaseAuthService();
   final _storageService = StorageService();
 
   void updateSignUpStep() async {

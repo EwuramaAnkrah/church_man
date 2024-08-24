@@ -1,14 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rmdev_widgets/network/log_all_the_time_filter.dart';
 
-class FirebaseService {
+class FirebaseAuthService {
   var log = rmGetLogger("Firebase Service");
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
- Stream<User?> userStateChanges() async* {
-  yield* _auth.authStateChanges();
-}
+  Stream<User?> userStateChanges() async* {
+    yield* _auth.authStateChanges();
+  }
 
   User? isUserSignedIn() {
     try {
@@ -21,16 +20,18 @@ class FirebaseService {
     return null;
   }
 
-  Future<FirebaseServiceResponse> createUserWithEmailAndPassword(
+  String get getUId => _auth.currentUser?.uid ?? '';
+
+  Future<FireAuthServiceResponse> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
       final UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-      return FirebaseServiceResponse(
+      return FireAuthServiceResponse(
           userInfo: userCredential.user, errorMessage: "", hasError: false);
     } on FirebaseAuthException catch (e) {
       log.e(e.message);
-      return FirebaseServiceResponse(errorMessage: e.message, hasError: true);
+      return FireAuthServiceResponse(errorMessage: e.message, hasError: true);
     }
   }
 
@@ -44,30 +45,30 @@ class FirebaseService {
     }
   }
 
-  Future<FirebaseServiceResponse> sendEmailVerificationLink() async {
+  Future<FireAuthServiceResponse> sendEmailVerificationLink() async {
     try {
       if (_auth.currentUser != null) {
         await _auth.currentUser?.sendEmailVerification();
-        return const FirebaseServiceResponse(errorMessage: "", hasError: false);
+        return const FireAuthServiceResponse(errorMessage: "", hasError: false);
       }
-      return const FirebaseServiceResponse(
+      return const FireAuthServiceResponse(
           errorMessage: "User not signed in", hasError: true);
     } on Exception {
-      return const FirebaseServiceResponse(
+      return const FireAuthServiceResponse(
           errorMessage: "An error occurred", hasError: true);
     }
   }
 
-  Future<FirebaseServiceResponse> signInUserWithEmailAndPassword(
+  Future<FireAuthServiceResponse> signInUserWithEmailAndPassword(
       String email, String password) async {
     try {
       final credential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      return FirebaseServiceResponse(
+      return FireAuthServiceResponse(
           userInfo: credential.user, errorMessage: "", hasError: false);
     } on FirebaseAuthException catch (e) {
       log.e(e.message);
-      return FirebaseServiceResponse(errorMessage: e.message, hasError: true);
+      return FireAuthServiceResponse(errorMessage: e.message, hasError: true);
     }
   }
 
@@ -80,11 +81,11 @@ class FirebaseService {
   }
 }
 
-class FirebaseServiceResponse {
+class FireAuthServiceResponse {
   final User? userInfo;
   final bool? hasError;
   final String? errorMessage;
 
-  const FirebaseServiceResponse(
+  const FireAuthServiceResponse(
       {this.userInfo, required this.errorMessage, required this.hasError});
 }

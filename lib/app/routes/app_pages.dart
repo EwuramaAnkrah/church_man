@@ -1,6 +1,8 @@
 import 'package:faith_fund/app/modules/auth/sign_in/index.dart';
 import 'package:faith_fund/app/modules/auth/sign_up/index.dart';
 import 'package:faith_fund/app/modules/home/index.dart';
+import 'package:faith_fund/app/modules/pay/index.dart';
+import 'package:faith_fund/app/modules/process_complete/process_complete_view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../modules/onBoarding/index.dart';
@@ -34,6 +36,16 @@ class AppPages {
       name: _Paths.home,
       page: () => const HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.pay,
+      page: () => const PayPage(),
+      binding: PayBinding(),
+    ),
+    GetPage(
+      name: _Paths.processComplete,
+      page: () => const ProcessCompleteView(),
+      binding: PayBinding(),
     ),
   ];
 }
