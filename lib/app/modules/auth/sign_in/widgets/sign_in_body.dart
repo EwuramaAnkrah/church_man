@@ -1,4 +1,3 @@
-import 'package:faith_fund/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -42,10 +41,12 @@ class SignInBody extends GetView<SignInController> {
                     textInputType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     onChanged: (value) {},
-                    validator: (value) => RmFormValidator.requiredValidator.call(value),
+                    validator: (value) =>
+                        RmFormValidator.requiredValidator.call(value),
                   ),
                   Gap(20.h),
                   RmTextFormField(
+                    maxLines: 1,
                     controller: controller.passwordController,
                     obscureText: true,
                     textInputAction: TextInputAction.done,
@@ -56,7 +57,8 @@ class SignInBody extends GetView<SignInController> {
                     contentPaddingRight: 15,
                     hintText: "Password",
                     hintTextColor: const Color.fromARGB(255, 158, 158, 161),
-                    validator: (value) => RmFormValidator.requiredValidator.call(value),
+                    validator: (value) =>
+                        RmFormValidator.requiredValidator.call(value),
                   ),
                 ],
               ),
@@ -65,7 +67,7 @@ class SignInBody extends GetView<SignInController> {
             Obx(() {
               return RmButton(
                 isLoading: controller.state.isLoading,
-                onTap: () =>controller.signInFaithUser(),
+                onTap: () => controller.signInFaithUser(),
                 label: "Sign In",
                 color: const Color(0xff4091a5),
               );
@@ -88,8 +90,8 @@ class SignInBody extends GetView<SignInController> {
                 Gap(10.w),
                 Text(
                   "OR",
-                  style: context.textTheme.bodyMedium
-                      ?.copyWith(color: const Color.fromARGB(255, 158, 158, 161)),
+                  style: context.textTheme.bodyMedium?.copyWith(
+                      color: const Color.fromARGB(255, 158, 158, 161)),
                 ),
                 Gap(10.w),
                 Image.asset(

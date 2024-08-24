@@ -1,4 +1,6 @@
 import 'package:faith_fund/app/modules/home/home_data.dart';
+import 'package:faith_fund/app/routes/app_pages.dart';
+import 'package:faith_fund/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -70,143 +72,97 @@ class HomeBody extends GetView<HomeController> {
               ),
             ),
             Gap(30.h),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-              height: 150.h,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: const Color(0x24ffffff),
-                borderRadius: BorderRadius.circular(30.r),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ...serviceList.map(
-                    (service) => Container(
-                      width: 118.w,
-                      height: double.maxFinite,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffffffff),
-                        // border: Border.all(
-                        //     width: 2.w,
-                        //     strokeAlign: BorderSide.strokeAlignOutside,
-                        //     color: const Color(0xFFF4F4F4)),
-                        borderRadius: BorderRadius.circular(25.r),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 10.h,
-                            left: 10.w,
-                            child: SvgPicture.asset(
-                              service.icon,
-                              height: 30.h,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment(-.6.w, 0),
-                            child: Text(
-                              service.title,
-                              style: context.textTheme.bodySmall?.copyWith(
-                                fontSize: 16.sp,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 10.h,
-                            right: 10.w,
-                            child: Container(
-                              height: 30.h,
-                              width: 30.h,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xFFF4F4F4),
-                              ),
-                              child: Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 20.sp,
-                                color: Colors.black,
+            Column(
+              children: [
+                ...serviceList.map(
+                  (service) => Container(
+                    margin: EdgeInsets.only(bottom: 10.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    height: 120.h,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: const Color(0x24ffffff),
+                      borderRadius: BorderRadius.circular(30.r),
+                    ),
+                    child: InkWell(
+                      onTap: () => Get.toNamed(Routes.pay, arguments: service),
+                      child: Container(
+                        width: 88.w,
+                        height: double.maxFinite,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff37A0B9),
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Image.asset(
+                                Assets.imagesMaskGroup,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                        ],
+                            Positioned(
+                              left: 20.w,
+                              top: 20.h,
+                              bottom: 20.h,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 50.h,
+                                    width: 50.h,
+                                    padding: EdgeInsets.all(5.r),
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xffffffff),
+                                        borderRadius:
+                                            BorderRadius.circular(10.r)),
+                                    child: SvgPicture.asset(
+                                      service.icon ?? Assets.iconsOffering,
+                                      height: 30.h,
+                                      color: const Color(0xff4091a5),
+                                    ),
+                                  ),
+                                  20.horizontalSpace,
+                                  Text(
+                                    service.title ?? "",
+                                    style:
+                                        context.textTheme.bodySmall?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.sp,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 10.h,
+                              right: 10.w,
+                              child: Container(
+                                height: 30.h,
+                                width: 30.h,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xffffffff),
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_rounded,
+                                  size: 20.sp,
+                                  color: const Color(0xff4091a5),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Gap(30.h),
-            Container(
-              clipBehavior: Clip.antiAlias,
-              height: 150.h,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: const Color(0xff37A0B9),
-                borderRadius: BorderRadius.circular(30.r),
-              ),
-              child: Stack(
-                clipBehavior: Clip.antiAlias,
-                children: [
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image.asset(
-                      "assets/images/Mask-group.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 10.h,
-                    left: 10.w,
-                    child: SvgPicture.asset("assets/icons/History.svg"),
-                  ),
-                  Positioned(
-                    bottom: 25.h,
-                    right: 20.h,
-                    child: Container(
-                      height: 40.h,
-                      width: 40.h,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0x94ffffff),
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward_rounded,
-                        size: 20.sp,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 20.h,
-                    left: 20.w,
-                    right: 100.w,
-                    child: Text(
-                      "GHS2,599.89",
-                      style: context.textTheme.bodyLarge
-                          ?.copyWith(color: Colors.white),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment(-1.w, 0),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/icons/tithe.svg",
-                          height: 30.sp,
-                        ),
-                        Gap(15.w),
-                        Text("Tithe",
-                            style: context.textTheme.bodyMedium?.copyWith(
-                                color: Colors.white, fontSize: 26.sp)),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
           ],
         ),
       ),

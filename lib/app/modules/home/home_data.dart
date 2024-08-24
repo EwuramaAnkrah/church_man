@@ -1,17 +1,30 @@
 class OfferingServices {
-  final String title;
-  final String icon;
-  final OfferingType type;
+  final String? title;
+  final String? icon;
+  final OfferingType? type;
 
-  const OfferingServices(this.title, this.icon, this.type);
+  const OfferingServices({this.title, this.icon, this.type});
 }
 
 List<OfferingServices> serviceList = [
   const OfferingServices(
-      "Offering", "assets/icons/offering.svg", OfferingType.offering),
-  const OfferingServices("Tithe", "assets/icons/tithe.svg", OfferingType.tithe),
+      title: "Offering",
+      icon: "assets/icons/offering.svg",
+      type: OfferingType.offering),
   const OfferingServices(
-      "Donate", "assets/icons/donation.svg", OfferingType.donation),
+      title: "Tithe", icon: "assets/icons/tithe.svg", type: OfferingType.tithe),
+  const OfferingServices(
+      title: "Donate",
+      icon: "assets/icons/donation.svg",
+      type: OfferingType.donation),
 ];
 
-enum OfferingType { offering, tithe, donation }
+enum OfferingType {
+  offering("Offering", "OFT"),
+  tithe("Tithe", "THT"),
+  donation("Donation", "DON");
+
+  const OfferingType(this.typeName, this.code);
+
+  final String typeName, code;
+}
