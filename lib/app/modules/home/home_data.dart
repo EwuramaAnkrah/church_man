@@ -1,3 +1,5 @@
+import 'package:faith_fund/generated/assets.dart';
+
 class OfferingServices {
   final String? title;
   final String? icon;
@@ -27,4 +29,16 @@ enum OfferingType {
   const OfferingType(this.typeName, this.code);
 
   final String typeName, code;
+}
+
+List<NavbarItemModel> navbarItems = [
+  const NavbarItemModel("Home", Assets.iconsHome),
+  const NavbarItemModel("History", Assets.iconsMoney)
+];
+
+class NavbarItemModel {
+  final String label;
+  final String icon;
+
+  const NavbarItemModel(this.label, this.icon);
 }
