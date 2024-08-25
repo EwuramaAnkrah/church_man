@@ -5,6 +5,7 @@ import 'package:faith_fund/app/modules/pay/index.dart';
 import 'package:faith_fund/app/modules/process_complete/process_complete_view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
+import '../modules/home/widgets/history/index.dart';
 import '../modules/onBoarding/index.dart';
 import 'auth_middleware.dart';
 
@@ -35,7 +36,7 @@ class AppPages {
     GetPage(
       name: _Paths.home,
       page: () => const HomePage(),
-      binding: HomeBinding(),
+      bindings: [HomeBinding(), HistoryBinding(),],
     ),
     GetPage(
       name: _Paths.pay,
