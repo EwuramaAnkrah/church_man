@@ -1,5 +1,6 @@
 import 'package:faith_fund/app/routes/app_pages.dart';
 import 'package:faith_fund/app/services/firebase/firebase_auth_service.dart';
+import 'package:faith_fund/app/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rmdev_widgets/network/log_all_the_time_filter.dart';
@@ -28,6 +29,7 @@ class SignInController extends GetxController {
           log.i(response.errorMessage);
           return;
         }
+        await StorageService().saveUserToken(response.userInfo?.uid ?? "");
         Get.offAllNamed(Routes.home);
       }
     } finally {

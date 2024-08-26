@@ -1,4 +1,5 @@
 import 'package:faith_fund/generated/assets.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class OfferingServices {
   final String? title;
@@ -29,6 +30,16 @@ enum OfferingType {
   const OfferingType(this.typeName, this.code);
 
   final String typeName, code;
+}
+
+extension OfferingTypeExt on String? {
+  static const _offeringTypeCode = {
+    "OFT": OfferingType.offering,
+    "THT": OfferingType.tithe,
+    "DON": OfferingType.donation,
+  };
+
+  String get offeringType => _offeringTypeCode[validate()]?.typeName ?? "";
 }
 
 List<NavbarItemModel> navbarItems = [
