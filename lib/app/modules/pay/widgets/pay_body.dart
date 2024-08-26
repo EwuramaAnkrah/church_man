@@ -153,12 +153,14 @@ class PayBody extends GetView<PayController> {
                       validator: RmFormValidator.requiredValidator.call,
                     ),
                     Gap(16.h),
-                    RmButton(
-                      onTap: () => controller.makeDonationRequest(),
-                      isLoading: controller.state.isProcessing,
-                      label: "Donate",
-                      buttonCornerRadius: 10.r,
-                      color: const Color(0xff4091a5),
+                    Obx(
+                      () => RmButton(
+                        onTap: () => controller.makeDonationRequest(),
+                        isLoading: controller.state.isProcessing,
+                        label: "Donate",
+                        buttonCornerRadius: 10.r,
+                        color: const Color(0xff4091a5),
+                      ),
                     ),
                   ],
                 ),
