@@ -18,18 +18,16 @@ class HistoryController extends GetxController {
 
   void getDonationDate() {
     state.loadingDonations = true;
-    List<PaymentPayload> stateHistory = state.history;
     final donations = _fireStoreService.getUserDonations();
 
     donations.listen(
       (snapshot) {
-        stateHistory.addAll(
-          snapshot.docs.map(
-            (donation) =>
-                PaymentPayload.fromMap(donation.data() as Map<String, dynamic>),
-          ),
-        );
-        state.history = stateHistory;
+        state.history = snapshot.docs
+            .map(
+              (donation) => PaymentPayload.fromMap(
+                  donation.data() as Map<String, dynamic>),
+            )
+            .toList();
       },
       onError: (error) {
         state.loadingDonations = false;

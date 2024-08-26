@@ -11,9 +11,7 @@ class PayPage extends GetView<PayController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PayController>(
-      builder: (_) {
-        return Scaffold(
+    return Scaffold(
           backgroundColor: const Color(0xfff9f9f9),
           appBar: AppBar(
             title: Row(
@@ -23,11 +21,7 @@ class PayPage extends GetView<PayController> {
               ],
             ),
           ),
-          body: const SafeArea(
-            child: PayBody(),
-          ),
+          body: const PayBody(),
         );
-      },
-    );
   }
 }
