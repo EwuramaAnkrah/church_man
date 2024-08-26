@@ -1,4 +1,5 @@
 import 'package:faith_fund/app/modules/home/home_data.dart';
+import 'package:faith_fund/app/modules/home/widgets/history/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -12,27 +13,36 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF063D7D),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xff4091a5),
-        title: Obx(() =>
-            Text(controller.faithUser?.displayName?.split(" ").first ?? "")),
-      ),
-      body: const HomeBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        unselectedItemColor: const Color(0xFF063D7D),
-        backgroundColor: const Color(0xff4091a5),
-        items: navbarItems
-            .map(
-              (navbarItem) => BottomNavigationBarItem(
-                label: navbarItem.label,
-                icon: SvgPicture.asset(navbarItem.icon),
-              ),
-            )
-            .toList(),
-      ),
+      body: Obx(() => IndexedStack(
+            index: controller.state.selectedPageIndex,
+            children: const [HomeBody(), HistoryPage()],
+          )),
+      bottomNavigationBar: Obx(() {
+        return BottomNavigationBar(
+          currentIndex: controller.state.selectedPageIndex,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: const Color(0xB8FFFFFF),
+          backgroundColor: const Color(0xff4091a5),
+          onTap: (index) => controller.updatePageIndex(index),
+          items: navbarItems
+              .asMap()
+              .entries
+              .map(
+                (navbarItem) => BottomNavigationBarItem(
+                  label: navbarItem.value.label,
+                  icon: SvgPicture.asset(
+                    navbarItem.value.icon,
+                    colorFilter: ColorFilter.mode(
+                        navbarItem.key == controller.state.selectedPageIndex
+                            ? Colors.white
+                            : const Color(0xB8FFFFFF),
+                        BlendMode.srcIn),
+                  ),
+                ),
+              )
+              .toList(),
+        );
+      }),
     );
   }
 }
