@@ -2,6 +2,7 @@ import 'package:faith_fund/app/modules/home/home_data.dart';
 import 'package:faith_fund/app/routes/app_pages.dart';
 import 'package:faith_fund/app/services/firebase/fire_storage_storage.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../../services/firebase/firebase_auth_service.dart';
 import 'index.dart';
@@ -30,7 +31,7 @@ class PayController extends GetxController {
 
   void onAmountChanged(String amount) {
     state.paymentInfo = state.paymentInfo.copyWith(
-      amount: amount,
+      amount: amount.toDouble(),
     );
   }
 

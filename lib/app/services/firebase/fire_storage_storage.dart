@@ -20,10 +20,29 @@ class FireStorageService {
     }
   }
 
+  Stream<double> getDonationSum() {
+    try {
+      return _store
+          .collection("donations")
+          .where("user_id", isEqualTo: uId)
+          .where("trans_type", isEqualTo: "DON")
+          .snapshots().map((snapshot) {
+         double sum = 0.0;
+         for (var doc in snapshot.docs) {
+           double amount = (doc.data())["amount"] ?? 0.00;
+           sum += amount;
+         }
+         return sum;
+      });
+    } on FirebaseException catch (e) {
+      log.e("Error fetching donations: ${e.toString()}");
+      return const Stream.empty();
+    }
+  }
+
   Future<void> saveDonationToStore(PaymentPayload donation) async {
     try {
       await _store.collection("donations").add(donation.toJson());
-      
     } on FirebaseException catch (e) {
       log.e("Error saving donation: ${e.message}");
       // Handle error appropriately (e.g., show error to user)

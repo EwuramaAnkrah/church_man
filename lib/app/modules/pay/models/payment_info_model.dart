@@ -1,7 +1,7 @@
 class PaymentPayload {
   String? customerNumber;
   String? network;
-  String? amount;
+  double? amount;
   String? transType;
   String? narration;
   DateTime? date;
@@ -22,7 +22,7 @@ class PaymentPayload {
   PaymentPayload copyWith({
     String? customerNumber,
     String? network,
-    String? amount,
+    double? amount,
     String? transType,
     String? narration,
     DateTime? date,
@@ -41,7 +41,7 @@ class PaymentPayload {
       );
 
   factory PaymentPayload.fromMap(Map<String, dynamic>? map) => PaymentPayload(
-      amount: map?['amount'] as String?,
+      amount: map?['amount'] as double?,
       customerNumber: map?['customer_number'] as String?,
       narration: map?['narration'] as String?,
       network: map?['network'] as String?,

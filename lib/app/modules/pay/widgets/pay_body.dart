@@ -138,7 +138,7 @@ class PayBody extends GetView<PayController> {
                       textInputAction: TextInputAction.next,
                       hintTextColor: const Color(0xffbbbbbb),
                       validator: RmFormValidator.validateAmount(
-                              controller.state.paymentInfo.amount ?? "", 0.1)
+                              controller.state.paymentInfo.amount.toString() ?? "", 0.1)
                           .call,
                     ),
                     Gap(16.h),
