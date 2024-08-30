@@ -65,7 +65,7 @@ class _HistoryViewGetX extends GetView<HistoryController> {
                         ?.copyWith(color: Colors.white, fontSize: 16.sp),
                   ),
                   Text(
-                    DateFormat("dd/mm/yy hh:mm").format(
+                    DateFormat("dd/MM/yy hh:mm").format(
                         controller.state.history[index].date ?? DateTime.now()),
                     style: context.textTheme.bodySmall
                         ?.copyWith(color: Colors.white, fontSize: 16.sp),

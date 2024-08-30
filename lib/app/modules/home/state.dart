@@ -13,4 +13,8 @@ class HomeState {
   final RxBool _loadingDonations = false.obs;
   bool get loadingDonations => _loadingDonations.value;
   set loadingDonations(bool loading) => _loadingDonations.value = loading;
+
+  final RxDouble _sum = 0.0.obs;
+  double get sum => _sum.value;
+  set sum(sum) => _sum.value = sum;
 }

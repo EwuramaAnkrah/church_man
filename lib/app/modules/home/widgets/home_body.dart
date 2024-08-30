@@ -21,10 +21,13 @@ class HomeBody extends GetView<HomeController> {
         automaticallyImplyLeading: false,
         centerTitle: false,
         backgroundColor: const Color(0xff4091a5),
-        title: Obx(() => Text(
-              "Hello ${controller.faithUser?.displayName?.split(" ").first}",
+        title: Obx(() =>
+            Text(
+              "Hello ${controller.faithUser?.displayName
+                  ?.split(" ")
+                  .first}",
               style:
-                  context.textTheme.bodyMedium?.copyWith(color: Colors.white),
+              context.textTheme.bodyMedium?.copyWith(color: Colors.white),
             )),
       ),
       body: Padding(
@@ -46,124 +49,124 @@ class HomeBody extends GetView<HomeController> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25.r),
                 ),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 10.h,
-                      left: 10.w,
-                      child: const Text("Verse of the day"),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '''"And seven women shall take hold of one man in that day, saying, We will eat our own bread, and wear our own apparel: only let us be called by thy name, take away our reproach."''',
-                        style: GoogleFonts.bonaNova(
-                            height: 1.2.h,
-                            fontSize: 22.sp,
-                            color: Colors.white),
-                        textAlign: TextAlign.center,
+                child: Obx(() {
+                  return Stack(
+                    children: [
+                      Positioned(
+                        top: 10.h,
+                        left: 10.w,
+                        child: const Text("Total Donations"),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 10.h,
-                      right: 0.w,
-                      child: Text(
-                        "Isiah 4:1",
-                        style: context.textTheme.bodyMedium,
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text("GHS ${controller.state.sum}",
+                          style: context.textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: 35.sp),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                      Positioned(
+                        bottom: 10.h,
+                        right: 0.w,
+                        child: Text(
+                          "Isiah 4:1",
+                          style: context.textTheme.bodyMedium,
+                        ),
+                      ),
+                    ],
+                  );
+                }),
               ),
             ),
             Gap(30.h),
             Column(
               children: [
                 ...serviceList.map(
-                  (service) => Container(
-                    margin: EdgeInsets.only(bottom: 10.h),
-                    padding:
+                      (service) =>
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10.h),
+                        padding:
                         EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-                    height: 120.h,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                      color: const Color(0x24ffffff),
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                    child: InkWell(
-                      onTap: () => Get.toNamed(Routes.pay, arguments: service),
-                      child: Container(
-                        width: 88.w,
-                        height: double.maxFinite,
+                        height: 120.h,
+                        width: double.maxFinite,
                         decoration: BoxDecoration(
-                          color: const Color(0xff37A0B9),
-                          borderRadius: BorderRadius.circular(25.r),
+                          color: const Color(0x24ffffff),
+                          borderRadius: BorderRadius.circular(30.r),
                         ),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: Image.asset(
-                                Assets.imagesMaskGroup,
-                                fit: BoxFit.cover,
-                              ),
+                        child: InkWell(
+                          onTap: () =>
+                              Get.toNamed(Routes.pay, arguments: service),
+                          child: Container(
+                            width: 88.w,
+                            height: double.maxFinite,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff37A0B9),
+                              borderRadius: BorderRadius.circular(25.r),
                             ),
-                            Positioned(
-                              left: 20.w,
-                              top: 20.h,
-                              bottom: 20.h,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 50.h,
-                                    width: 50.h,
-                                    padding: EdgeInsets.all(5.r),
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xffffffff),
-                                        borderRadius:
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Image.asset(
+                                    Assets.imagesMaskGroup,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20.w,
+                                  top: 20.h,
+                                  bottom: 20.h,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 50.h,
+                                        width: 50.h,
+                                        padding: EdgeInsets.all(5.r),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xffffffff),
+                                            borderRadius:
                                             BorderRadius.circular(10.r)),
-                                    child: SvgPicture.asset(
-                                      service.icon ?? Assets.iconsOffering,
-                                      height: 30.h,
+                                        child: SvgPicture.asset(
+                                          service.icon ?? Assets.iconsOffering,
+                                          height: 30.h,
+                                          color: const Color(0xff4091a5),
+                                        ),
+                                      ),
+                                      20.horizontalSpace,
+                                      Text(
+                                        service.title ?? "",
+                                        style:
+                                        context.textTheme.bodySmall?.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16.sp,
+                                        ),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 10.h,
+                                  right: 10.w,
+                                  child: Container(
+                                    height: 30.h,
+                                    width: 30.h,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xffffffff),
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_forward_rounded,
+                                      size: 20.sp,
                                       color: const Color(0xff4091a5),
                                     ),
                                   ),
-                                  20.horizontalSpace,
-                                  Text(
-                                    service.title ?? "",
-                                    style:
-                                        context.textTheme.bodySmall?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16.sp,
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 10.h,
-                              right: 10.w,
-                              child: Container(
-                                height: 30.h,
-                                width: 30.h,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xffffffff),
                                 ),
-                                child: Icon(
-                                  Icons.arrow_forward_rounded,
-                                  size: 20.sp,
-                                  color: const Color(0xff4091a5),
-                                ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
                 ),
               ],
             ),

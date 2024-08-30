@@ -12,7 +12,7 @@ class FireStorageService {
     try {
       return _store
           .collection("donations")
-          .where("user_id", isEqualTo: uId)
+          .where("user_id", isEqualTo: uId).orderBy("date", descending: true)
           .snapshots();
     } on FirebaseException catch (e) {
       log.e("Error fetching donations: ${e.message}");
